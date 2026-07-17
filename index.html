@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Werewolf characters list</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #121212; color: #ffffff;
+            height: 100vh; display: flex; overflow: hidden; position: relative;
+        }
+
+        .left-panel {
+            width: 350px; background-color: #1e1e1e; border-right: 1px solid #333;
+            display: flex; flex-direction: column; padding: 15px 20px; gap: 20px; z-index: 2;
+        }
+
+        .slider-box {
+            width: 100%; height: 180px; border-radius: 8px; overflow: hidden;
+            position: relative; background-color: #000; flex-shrink: 0;
+        }
+        .slider-box img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.8s ease-in-out; }
+
+        #normal-ui { display: flex; flex-direction: column; flex: 1; overflow: hidden; gap: 20px; }
+
+        .search-box {
+            display: flex; align-items: center; background-color: #2c2c2c;
+            border-radius: 6px; padding: 10px 12px;
+        }
+        .search-box i { color: #aaa; font-size: 16px; }
+        .search-box input {
+            background: transparent; border: none; outline: none;
+            color: white; width: 100%; font-size: 14px; margin-left: 10px;
+        }
+        .search-box input::placeholder { color: #888; }
+
+        .filter-tabs { display: flex; gap: 15px; padding-bottom: 8px; flex-wrap: wrap; }
+        .tab-btn {
+            background: transparent; border: none; color: #888;
+            cursor: pointer; font-size: 16px; font-weight: 700;
+            transition: color 0.3s; position: relative; padding: 0 5px;
+        }
+        .tab-btn:hover { color: #ccc; }
+        .tab-btn.active { color: #ffffff; }
+        .tab-btn.active::after {
+            content: ""; position: absolute; bottom: -6px; left: 50%;
+            transform: translateX(-50%); width: 18px; height: 3px;
+            background-color: #fdd835; border-radius: 2px;
+        }
+
+        .char-list {
+            flex: 1; overflow-y: auto; display: flex; flex-direction: column;
+            gap: 8px; margin-top: 5px; padding-right: 5px;
+        }
+        .char-list::-webkit-scrollbar { width: 6px; }
+        .char-list::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
+
+        .char-item {
+            padding: 14px; background-color: #252525; border-radius: 6px;
+            cursor: pointer; transition: 0.2s; border-left: 4px solid transparent; font-weight: 500;
+        }
+        .char-item:hover { background-color: #333; transform: translateX(4px); }
+        .phe-dan { border-left-color: #2196F3; }
+        .phe-soi { border-left-color: #F44336; }
+        .phe-phe3 { border-left-color: #FF9800; }
+
+        #random-ui { display: none; flex-direction: column; flex: 1; gap: 12px; animation: fadeIn 0.3s ease; }
+        #random-ui h3 { color: #fff; font-size: 18px; text-align: center; }
+        #random-textarea {
+            flex: 1; background-color: #2c2c2c; color: #fff; border: 1px solid #444;
+            border-radius: 8px; padding: 12px; resize: none; outline: none;
+            font-size: 15px; font-family: inherit; line-height: 1.5;
+        }
+        #random-textarea::placeholder { color: #888; }
+        #random-textarea::-webkit-scrollbar { width: 6px; }
+        #random-textarea::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
+
+        .random-actions { display: flex; gap: 10px; }
+        .btn-action {
+            flex: 1; padding: 12px; border: none; border-radius: 6px;
+            font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.2s;
+        }
+        .btn-action.spin { background-color: #fdd835; color: #121212; }
+        .btn-action.spin:hover { background-color: #ffeb3b; }
+        .btn-action.cancel { background-color: #444; color: white; }
+        .btn-action.cancel:hover { background-color: #555; }
+
+        .main-panel {
+            flex: 1; position: relative; display: flex; justify-content: center; align-items: center;
+            background-color: #0a0a0a; overflow: hidden; z-index: 1;
+        }
+        .big-image { width: 100%; height: 100%; object-fit: cover; transition: filter 0.4s ease; }
+        .main-panel.blur-bg .big-image { filter: blur(8px) scale(1.02); }
+
+        .unified-overlay {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px);
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease; z-index: 10;
+        }
+        .unified-overlay.active { opacity: 1; pointer-events: all; }
+
+        .box-wrapper {
+            width: 0; opacity: 0; overflow: hidden; display: flex;
+            justify-content: center; margin: 0; transform: scale(0.9);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, margin 0.4s ease, transform 0.4s ease;
+        }
+        .box-wrapper.active { opacity: 1; transform: scale(1); margin: 0 15px; }
+        
+        /* Chỉnh kích thước hiển thị chi tiết to hơn trên Máy tính */
+        #info-wrapper.active { width: 600px; } 
+        #note-wrapper.active { width: 380px; }
+
+        .info-box {
+            background-color: rgba(30, 30, 30, 0.4); 
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            padding: 35px; /* Tăng padding trên máy tính cho thoáng */
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5); 
+            position: relative; flex-shrink: 0; width: 100%;
+            text-align: center;
+        }
+
+        .note-box {
+            background-color: #1a1a1a; 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            padding: 15px; 
+            padding-top: 45px; 
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6); 
+            position: relative; flex-shrink: 0; width: 100%;
+            display: flex; flex-direction: column; height: 550px;
+        }
+
+        .close-btn {
+            position: absolute; top: 12px; right: 15px; background: none; border: none;
+            color: #aaa; font-size: 26px; cursor: pointer; transition: 0.2s; z-index: 11;
+        }
+        .close-btn:hover { color: white; transform: rotate(90deg); }
+        
+        /* Cỡ chữ to hơn cho tên và nội dung trên Máy tính */
+        .info-box h2 { color: #fff; margin-bottom: 15px; font-size: 26px; } 
+        .badge-container { margin-bottom: 20px; }
+        .info-box .phe-badge {
+            display: inline-block; padding: 5px 12px; border-radius: 20px;
+            font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); margin: 0 5px;
+        }
+        .info-box p {
+            color: #ddd; line-height: 1.7; font-size: 17px; text-align: justify;
+            max-height: 500px; overflow-y: auto; padding-right: 5px;
+        }
+        .info-box p::-webkit-scrollbar { width: 4px; }
+        .info-box p::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
+        #info-desc { white-space: pre-line; }
+
+        .note-box textarea {
+            flex: 1; 
+            background-color: #2c2c2c; 
+            color: #fff; 
+            border: 1px solid #444; 
+            border-radius: 8px; 
+            padding: 12px;
+            margin-top: 0; 
+            resize: none; outline: none; font-size: 15px; line-height: 1.5; font-family: inherit;
+        }
+        .note-box textarea::placeholder { color: #888; }
+        .note-box textarea::-webkit-scrollbar { width: 6px; }
+        .note-box textarea::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
+
+        .random-board-overlay {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(18, 18, 18, 0.75); display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease; z-index: 20;
+        }
+        .random-board-overlay.active { opacity: 1; pointer-events: all; }
+        #random-result-text { font-size: 5rem; font-weight: 800; color: #fff; text-shadow: 0 8px 25px rgba(0, 0, 0, 0.9); text-align: center; padding: 0 40px; }
+        .animating-spin { animation: pulse-scale 0.1s infinite alternate; }
+        @keyframes pulse-scale { from { transform: scale(1); } to { transform: scale(1.05); } }
+
+        .right-panel {
+            width: 70px; background-color: #1e1e1e; border-left: 1px solid #333;
+            display: flex; flex-direction: column; align-items: center; padding-top: 20px; z-index: 100;
+        }
+        .menu-container { display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%; position: relative; }
+        .icon-btn {
+            width: 45px; height: 45px; background-color: #333; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            text-decoration: none; border: none; outline: none; cursor: pointer; --rot: 0deg; transform: rotate(var(--rot));
+            transition: all 0.4s ease-in-out; box-shadow: 0 4px 8px rgba(0,0,0,0.3); flex-shrink: 0;
+        }
+        .icon-btn i { font-size: 20px; }
+        .icon-btn:hover { background-color: #e0e0e0; transform: scale(1.1) rotate(var(--rot)); }
+        
+        .hamburger-btn { background-color: #2c2c2c; }
+        .hamburger-btn i { color: white; }
+        .hamburger-btn:hover { background-color: #555; }
+
+        .sub-menu { display: flex; flex-direction: column; gap: 15px; max-height: 500px; opacity: 1; transition: all 0.3s ease-in-out; overflow: hidden; }
+        .sub-menu.hidden { max-height: 0; opacity: 0; pointer-events: none; margin-top: -15px; }
+        .fb-icon, .random-icon, .note-icon { background-color: #ffffff; color: #000000; }
+        .mobile-brand { display: none; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* GIAO DIỆN ĐIỆN THOẠI (Ghi đè để giữ nguyên sự nhỏ gọn) */
+        @media screen and (max-width: 768px) {
+            body { display: block; position: relative; overflow: hidden; }
+
+            .right-panel {
+                position: absolute; top: 0; left: 0; width: 100%; height: 0;
+                background: transparent; border: none; padding: 0; z-index: 100;
+            }
+            .mobile-brand { display: none; } 
+            
+            .menu-container {
+                position: absolute; top: 15px; right: 15px; width: auto;
+                flex-direction: column; align-items: flex-end; padding: 0;
+            }
+            .icon-btn.hamburger-btn { background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); }
+            
+            .sub-menu {
+                top: 55px; right: 0; position: absolute; margin-top: 0; z-index: 101;
+                background-color: rgba(30, 30, 30, 0.95); backdrop-filter: blur(10px); padding: 15px 10px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+            }
+            .sub-menu.hidden { padding: 0 10px; }
+
+            .left-panel {
+                position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                padding: 0; background-color: #121212; display: block; border: none; z-index: 1;
+            }
+
+            .slider-box {
+                width: 100%; height: 40vh; /* Chiếm 40% trên cùng */
+                position: absolute; top: 0; left: 0; border-radius: 0; z-index: 2;
+            }
+
+            .main-panel {
+                position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                background: transparent !important; pointer-events: none; z-index: 5;
+            }
+            .big-image { display: none; }
+
+            #random-board {
+                position: absolute; top: 0; left: 0; width: 100%; height: 40vh;
+                background-color: rgba(0, 0, 0, 0.65); pointer-events: none; padding-top: 20px;
+            }
+            #random-board.active { pointer-events: all; }
+            #random-result-text { font-size: 3rem; text-shadow: 0 5px 15px rgba(0,0,0,1); }
+
+            .unified-overlay {
+                background-color: transparent !important; backdrop-filter: none !important;
+                padding: 0; opacity: 1 !important; pointer-events: none !important;
+            }
+            .unified-overlay.active { pointer-events: none !important; }
+
+            #normal-ui, #random-ui, #note-wrapper {
+                position: absolute; top: 40vh; height: 60vh; margin: 0; padding: 10px; box-sizing: border-box;
+                transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+                background-color: #121212; pointer-events: none; opacity: 0;
+            }
+
+            .box-wrapper { transform: none !important; margin: 0 !important; }
+
+            #normal-ui { left: 0; width: 100%; z-index: 3; display: flex !important; opacity: 1; pointer-events: all; }
+            #note-wrapper { left: 100%; width: 50% !important; z-index: 4; }
+            #random-ui { left: 0; width: 100% !important; z-index: 4; display: flex !important; }
+
+            body.note-active #note-wrapper { left: 50%; opacity: 1; pointer-events: all; border-left: 1px solid #333; }
+            body.note-active:not(.random-active) #normal-ui { width: 50%; }
+
+            body.random-active #random-ui { left: 0; width: 100% !important; opacity: 1; pointer-events: all; }
+            body.random-active:not(.note-active) #normal-ui { opacity: 0; pointer-events: none; }
+
+            body.note-active.random-active #normal-ui { opacity: 0; pointer-events: none; }
+            body.note-active.random-active #random-ui { width: 50% !important; border-right: 1px solid #333; }
+            body.note-active.random-active #note-wrapper { left: 50%; opacity: 1; pointer-events: all; border-left: none; }
+
+            /* ---------- KHU VỰC CHI TIẾT MA SÓI TRÊN ĐIỆN THOẠI ---------- */
+            #info-wrapper { 
+                position: absolute; top: 0; left: 0; width: 100% !important; height: 40vh !important;
+                background-color: rgba(0, 0, 0, 0.4) !important; 
+                backdrop-filter: blur(2px);
+                z-index: 30; opacity: 0; pointer-events: none;
+                display: flex; justify-content: center; align-items: center; 
+                padding: 25px; 
+                box-sizing: border-box; transition: opacity 0.3s ease;
+            }
+            body.info-active #info-wrapper { opacity: 1; pointer-events: all; }
+            
+            body.note-active:not(.random-active) #info-wrapper,
+            body.random-active:not(.note-active) #info-wrapper,
+            body.note-active.random-active #info-wrapper { left: 0; width: 100% !important; }
+
+            /* Khôi phục thông số nhỏ trên điện thoại */
+            .info-box { 
+                width: 100%; height: 100%; border-radius: 12px; padding: 15px; /* Giữ đệm mỏng 15px trên mobi */
+                border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+                background-color: rgba(30, 30, 30, 0.5); 
+                display: flex; flex-direction: column; 
+            }
+            .info-box h2 { font-size: 18px; margin-bottom: 10px; text-align: center; }
+            .info-box .phe-badge { font-size: 13px; }
+            .badge-container { text-align: center; margin-bottom: 15px; }
+            .info-box p { font-size: 13px; flex: 1; overflow-y: auto; text-align: justify; padding-right: 5px; line-height: 1.5; }
+            #close-info-btn { top: 8px; right: 12px; font-size: 24px; color: #fff; }
+
+            .note-box { 
+                width: 100%; height: 100%; border-radius: 8px; 
+                padding: 10px; padding-top: 45px; 
+                border: 1px solid #444; 
+                box-shadow: none; background-color: #2c2c2c; 
+                position: relative; 
+            }
+            
+            #main-note-textarea { 
+                flex: 1; margin-top: 0; border-radius: 0; 
+                background-color: transparent; 
+                border: none; 
+                padding: 5px; width: 100%; box-sizing: border-box; 
+                color: #fff; outline: none; resize: none;
+            }
+            
+            #close-note-btn { top: 8px; right: 15px; font-size: 26px; color: #aaa; z-index: 10; }
+            #close-note-btn:hover { color: #fff; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="left-panel">
+        <div class="slider-box">
+            <img id="slider-img" src="" alt="Slideshow">
+        </div>
+
+        <div id="normal-ui">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search-input" placeholder="Tìm kiếm...">
+            </div>
+
+            <div class="filter-tabs">
+                <button class="tab-btn active" data-filter="all">Tất cả</button>
+                <button class="tab-btn" data-filter="dan">Phe Dân</button>
+                <button class="tab-btn" data-filter="soi">Phe Sói</button>
+                <button class="tab-btn" data-filter="phe3">Phe Ba</button>
+            </div>
+
+            <div class="char-list" id="char-list"></div>
+        </div>
+
+        <div id="random-ui">
+            <textarea id="random-textarea" placeholder="Nhập tên người chơi...&#10;Lưu ý: Mỗi dòng là một người."></textarea>
+            <div class="random-actions">
+                <button id="btn-spin" class="btn-action spin">Xác nhận</button>
+                <button id="btn-cancel-random" class="btn-action cancel">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-panel" id="main-panel">
+        <img id="main-image" class="big-image" src="img/z8050001580098_cc6dea29a260026199a4ef1788a27f8c.jpg">
+        
+        <div id="random-board" class="random-board-overlay">
+            <div id="random-result-text"></div>
+        </div>
+
+        <div class="unified-overlay" id="unified-overlay">
+            
+            <div class="box-wrapper" id="info-wrapper">
+                <div class="info-box">
+                    <button class="close-btn" id="close-info-btn">&times;</button>
+                    <h2 id="info-name">Tên Nhân Vật</h2>
+                    
+                    <div class="badge-container">
+                        <span id="info-badge" class="phe-badge">Phe</span>
+                        <span id="info-aura" class="phe-badge">Hào quang</span>
+                    </div>
+                    
+                    <p id="info-desc">Chi tiết cách chơi hiển thị ở đây...</p>
+                </div>
+            </div>
+
+            <div class="box-wrapper note-wrapper" id="note-wrapper">
+                <div class="note-box">
+                    <button class="close-btn" id="close-note-btn">&times;</button>
+                    <textarea id="main-note-textarea" placeholder="Nhập ghi chú..."></textarea>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="right-panel">
+        <div class="mobile-brand">MA SÓI</div>
+        <div class="menu-container">
+            <button id="menu-toggle" class="icon-btn hamburger-btn" title="Mở Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div id="sub-menu" class="sub-menu hidden">
+                <a href="https://www.facebook.com/groups/417694116693326/?ref=share" target="_blank" class="icon-btn fb-icon" title="Vào nhóm Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <button id="btn-open-random" class="icon-btn random-icon" title="Quay Random">
+                    <i class="fa-solid fa-shuffle"></i>
+                </button>
+
+                <button id="btn-open-note" class="icon-btn note-icon" title="Mở Ghi chú">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const subMenu = document.getElementById('sub-menu');
+        let menuAngle = 0;
+        
+        menuToggle.addEventListener('click', function() {
+            subMenu.classList.toggle('hidden');
+            menuAngle += 180;
+            this.style.setProperty('--rot', `${menuAngle}deg`);
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!menuToggle.contains(event.target) && !subMenu.contains(event.target) && !subMenu.classList.contains('hidden')) {
+                subMenu.classList.add('hidden');
+                menuAngle += 180;
+                menuToggle.style.setProperty('--rot', `${menuAngle}deg`);
+            }
+        });
+
+        const normalUi = document.getElementById('normal-ui');
+        const randomUi = document.getElementById('random-ui');
+        const randomBoard = document.getElementById('random-board');
+        
+        const mainPanel = document.getElementById("main-panel");
+        const unifiedOverlay = document.getElementById("unified-overlay");
+        const infoWrapper = document.getElementById("info-wrapper");
+        const noteWrapper = document.getElementById("note-wrapper");
+
+        let isInfoOpen = false;
+        let isNoteOpen = false;
+        let isRandomOpen = false; 
+
+        function updateAppUI() {
+            document.body.classList.toggle('info-active', isInfoOpen);
+            document.body.classList.toggle('note-active', isNoteOpen);
+            document.body.classList.toggle('random-active', isRandomOpen);
+
+            if (isInfoOpen || isNoteOpen) {
+                unifiedOverlay.classList.add("active");
+                mainPanel.classList.add("blur-bg");
+            } else {
+                unifiedOverlay.classList.remove("active");
+                mainPanel.classList.remove("blur-bg");
+            }
+            if (isInfoOpen) infoWrapper.classList.add("active");
+            else infoWrapper.classList.remove("active");
+
+            if (isNoteOpen) noteWrapper.classList.add("active");
+            else noteWrapper.classList.remove("active");
+
+            if (isRandomOpen) {
+                normalUi.style.display = 'none'; 
+                randomUi.style.display = 'flex'; 
+                randomBoard.classList.add('active');
+            } else {
+                normalUi.style.display = 'flex'; 
+                randomUi.style.display = 'none'; 
+                randomBoard.classList.remove('active');
+            }
+        }
+
+        const btnOpenRandom = document.getElementById('btn-open-random');
+        const btnCancelRandom = document.getElementById('btn-cancel-random');
+        const btnOpenNote = document.getElementById("btn-open-note");
+        const closeInfoBtn = document.getElementById("close-info-btn");
+        const closeNoteBtn = document.getElementById("close-note-btn");
+        const resultText = document.getElementById('random-result-text');
+
+        btnOpenRandom.addEventListener('click', () => {
+            isRandomOpen = true;
+            resultText.style.color = "#ffffff";
+            subMenu.classList.add('hidden');
+            updateAppUI();
+        });
+
+        btnCancelRandom.addEventListener('click', () => {
+            isRandomOpen = false;
+            updateAppUI();
+        });
+
+        btnOpenNote.onclick = (e) => {
+            isNoteOpen = !isNoteOpen;
+            subMenu.classList.add('hidden');
+            updateAppUI();
+        };
+
+        closeNoteBtn.onclick = () => {
+            isNoteOpen = false;
+            updateAppUI();
+        };
+
+        closeInfoBtn.onclick = () => {
+            isInfoOpen = false;
+            updateAppUI();
+        };
+
+        unifiedOverlay.onclick = (e) => {
+            if(e.target === unifiedOverlay) {
+                isInfoOpen = false;
+                isNoteOpen = false;
+                updateAppUI();
+            }
+        };
+        infoWrapper.onclick = (e) => {
+            if(e.target === infoWrapper) {
+                isInfoOpen = false;
+                updateAppUI();
+            }
+        };
+
+        const infoName = document.getElementById("info-name");
+        const infoBadge = document.getElementById("info-badge");
+        const infoDesc = document.getElementById("info-desc");
+        const infoAura = document.getElementById("info-aura");
+
+        function showOverlay(charData) {            
+            infoName.textContent = charData.name;
+            infoDesc.textContent = charData.desc;
+            infoBadge.textContent = charData.teamName || "Chưa xếp loại";
+            
+            infoAura.textContent = `Hào quang: ${charData.aura || "Không xác định"}`;
+            
+            if (charData.aura === "Thiện") {
+                infoAura.style.backgroundColor = "#4CAF50";
+            } else if (charData.aura === "Ác") {
+                infoAura.style.backgroundColor = "#E91E63";
+            } else {
+                infoAura.style.backgroundColor = "#757575";
+            }
+            
+            if(charData.team === 'dan') infoBadge.style.backgroundColor = '#2196F3';
+            else if(charData.team === 'soi') infoBadge.style.backgroundColor = '#F44336';
+            else infoBadge.style.backgroundColor = '#FF9800';
+
+            isInfoOpen = true;
+            updateAppUI();
+        }
+
+        const btnSpin = document.getElementById('btn-spin');
+        const textArea = document.getElementById('random-textarea');
+        let spinTimer;
+
+        btnSpin.addEventListener('click', () => {
+            const rawNames = textArea.value.split('\n');
+            const names = rawNames.map(n => n.trim()).filter(n => n.length > 0);
+
+            if (names.length === 0) {
+                resultText.textContent = "Chưa có dữ liệu!";
+                resultText.style.color = "#ff5252";
+                return;
+            }
+            if (names.length === 1) {
+                resultText.textContent = `${names[0]}`;
+                resultText.style.color = "#ff5252";
+                return;
+            }
+
+            btnSpin.disabled = true;
+            btnSpin.style.opacity = '0.5';
+            
+            resultText.style.color = "#ffffff";
+            resultText.classList.add('animating-spin');
+            
+            spinTimer = setInterval(() => {
+                const randomName = names[Math.floor(Math.random() * names.length)];
+                resultText.textContent = randomName;
+            }, 60);
+
+            setTimeout(() => {
+                clearInterval(spinTimer);
+                resultText.classList.remove('animating-spin');
+                
+                const finalName = names[Math.floor(Math.random() * names.length)];
+                resultText.textContent = `${finalName}`;
+                resultText.style.color = "#ff5252";
+                
+                btnSpin.disabled = false;
+                btnSpin.style.opacity = '1';
+            }, 3000);
+        });
+
+        let characters = [];
+
+        async function loadCharactersData() {
+            try {
+                const response = await fetch('character.json');
+                if (!response.ok) throw new Error('Không thể tải file dữ liệu JSON');
+                characters = await response.json();
+                renderList();
+            } catch (error) {
+                console.error("Lỗi tải dữ liệu:", error);
+                document.getElementById("char-list").innerHTML =
+                    `<p style="color: #ff5252; padding: 15px; font-size: 14px;">Bạn cần mở bằng Live Server hoặc một Hosting để đọc file JSON.</p>`;
+            }
+        }
+
+        const sliderImgLinks = [
+            "img/z8050001580098_cc6dea29a260026199a4ef1788a27f8c.jpg",
+            "img/z8053418594513_fa5e99224083736a077f8559ae679d6b.jpg",
+            "img/z8053418598785_922a7273a90191a080018083a3e99132.jpg",
+            "img/z8053418601670_ceb37325706f2dd5658029b4b5c0b987.jpg",
+            "img/z8053418621738_36e0802a97b9743f562a79075dc8dfea.jpg",
+            "img/z8053418631710_28995642d7c98595649a7e5b510645fd.jpg",
+            "img/z8053418652415_9d9ea3c18290ee85fb94244d3819c0f7.jpg",
+            "img/z8053418656954_4557b591290ffe1202ef5fa9ca9b3853.jpg",
+            "img/z8053418658332_d97e36bb67a0676d6c7f8c211fcdd3a4.jpg"
+        ];        
+        const sliderElement = document.getElementById("slider-img");
+        let currentSlide = 0;
+
+        sliderElement.src = sliderImgLinks[0];
+        setInterval(() => {
+            sliderElement.style.opacity = 0;
+            setTimeout(() => {
+                currentSlide = (currentSlide + 1) % sliderImgLinks.length;
+                sliderElement.src = sliderImgLinks[currentSlide];
+                sliderElement.style.opacity = 1;
+            }, 800);
+        }, 4000);
+
+        const charListEl = document.getElementById("char-list");
+        const searchInput = document.getElementById("search-input");
+        const tabBtns = document.querySelectorAll(".tab-btn");
+        let currentFilter = "all";
+        let searchTerm = "";
+
+        function renderList() {
+            charListEl.innerHTML = "";
+            const filteredData = characters.filter(c => {
+                const matchFilter = currentFilter === "all" || c.team === currentFilter;
+                const matchSearch = c.name.toLowerCase().includes(searchTerm.toLowerCase());
+                return matchFilter && matchSearch;
+            });
+
+            filteredData.forEach(c => {
+                const div = document.createElement("div");
+                div.className = `char-item phe-${c.team}`;
+                div.textContent = c.name;
+                div.onclick = () => showOverlay(c);
+                charListEl.appendChild(div);
+            });
+        }
+
+        searchInput.addEventListener("input", (e) => {
+            searchTerm = e.target.value;
+            renderList();
+        });
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                tabBtns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                currentFilter = btn.dataset.filter;
+                renderList();
+            });
+        });
+
+        loadCharactersData();
+    </script>
+</body>
+</html>
