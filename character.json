@@ -1134,5 +1134,13 @@
     "teamName": "Phe Dân Làng",
     "aura": "Thiện",
     "desc": "Dược sĩ có 2 Bình: Bình thuốc mê và Bình hồi phục. \n- Bình Thuốc mê: dùng để làm cho một người chơi mất quyền biểu quyết và không được nói chuyện gì vào ngày hôm sau. \n - Bình Hồi phục: Dược sĩ biết ai bị Sói cắn và có thể chọn dùng thuốc cứu người đó.\n\nMỗi chức năng chỉ được sử dụng một lần duy nhất."
+  },
+    {
+    "id": 134,
+    "name": "Thợ Săn",
+    "team": "dan",
+    "teamName": "Phe Dân Làng",
+    "aura": "Thiện",
+    "desc": "Mỗi đêm, Thợ Săn có quyền ghim một người. Nếu Thợ Săn bị giết hay bị treo cổ, người này chết theo."
   }
 ]
