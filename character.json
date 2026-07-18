@@ -67,17 +67,17 @@
     "id": 9,
     "name": "Đạo Diễn Tử Thần",
     "team": "phe3",
-    "teamName": "Phe Dân Làng",
+    "teamName": "Phe Ba",
     "aura": "Không xác định",
-    "desc": "Mỗi đêm, ĐDTT sẽ gán 2 vai diễn cho 2 người chơi. Họ sẽ được thông báo riêng rằng họ đang có một vai diễn nhưng không biết mình là vai gì.\n - Vai Kẻ Vu Khống: Người này bắt buộc phải là người đầu tiên vote vào sáng mai. \n - Vai Kẻ Chết Thay: Người này phải bị 2 vote trong buổi bỏ phiếu sáng mai. \n\n Hai diễn viên có thể công khai bàn bạc trên group. Nếu ai diễn sai vai so với vai diễn đã gán thì Đạo Diễn có giải Oscar từ người đó, được bao nhiêu giải tùy thuộc số người diễn sai, và ngược lại Đạo Diễn không có gì. Nếu một trong hai người bị gán chết trong đêm, Đạo Diễn được 1 giải Oscar từ người còn lại."
+    "desc": "Đi chung với Diễn Viên Sát Nhân\n\n Mỗi đêm, ĐDTT sẽ gán 2 vai diễn cho 2 người chơi. Họ sẽ được thông báo riêng rằng họ đang có một vai diễn nhưng không biết mình là vai gì.\n - Vai Kẻ Vu Khống: Người này bắt buộc phải là người đầu tiên vote vào sáng mai. \n - Vai Kẻ Chết Thay: Người này phải bị 2 vote trong buổi bỏ phiếu sáng mai. \n\n Hai diễn viên có thể công khai bàn bạc trên group. Nếu ai diễn sai vai so với vai diễn đã gán thì Đạo Diễn có giải Oscar từ người đó, được bao nhiêu giải tùy thuộc số người diễn sai, và ngược lại Đạo Diễn không có gì. Nếu một trong hai người bị gán chết trong đêm, Đạo Diễn được 1 giải Oscar từ người còn lại."
   },
   {
     "id": 10,
     "name": "Diễn Viên Sát Nhân",
     "team": "phe3",
-    "teamName": "Phe Dân Làng",
+    "teamName": "Phe Ba",
     "aura": "Không xác định",
-    "desc": "- Kỹ năng Đóng Thế: 2 lần trong trò chơi, Diễn Viên có thể bảo vệ Đạo Diễn khỏi mọi sát thương từ người khác cả ngày lẫn đêm, bất kì ai giết Đạo Diễn đều bị giết ngược lại. \n\n - Kỹ năng Huyết Tế Sân Khấu: Khi Đạo Diễn có Oscar, mỗi đêm Diễn Viên sẽ được cử đi giết một người đã từng diễn sai, trong cả ván Diễn Viên có thể giết bao nhiêu người và giết những ai tùy thuộc số người đã diễn sai. \n\n GHI CHÚ: Phe thắng khi cả làng chết hết. Nếu Đạo Diễn chết giữa chừng, và Diễn Viên có thể khiến 3 phân cảnh này xảy ra thì cả phe thắng (phân cảnh được ghi lại từ lúc bắt đầu nhưng Đạo Diễn chết mới khởi động, nghĩa là nếu phân cảnh diễn ra lúc Đạo Diễn chưa chết vẫn tính): \n + Cảnh 1: Người chết do Diễn Viên giết \n + Cảnh 2: Người chết do bị phản đòn giết Đạo Diễn \n + Cảnh 3: Một người từng diễn vai Kẻ Chết Thay chết vào ban ngày (tính cả bị vote)"
+    "desc": "Đi chung với Đạo Diễn Tử Thần\n\n - Kỹ năng Đóng Thế: 2 lần trong trò chơi, Diễn Viên có thể bảo vệ Đạo Diễn khỏi mọi sát thương từ người khác cả ngày lẫn đêm, bất kì ai giết Đạo Diễn đều bị giết ngược lại. \n\n - Kỹ năng Huyết Tế Sân Khấu: Khi Đạo Diễn có Oscar, mỗi đêm Diễn Viên sẽ được cử đi giết một người đã từng diễn sai, trong cả ván Diễn Viên có thể giết bao nhiêu người và giết những ai tùy thuộc số người đã diễn sai. \n\n GHI CHÚ: Phe thắng khi cả làng chết hết. Nếu Đạo Diễn chết giữa chừng, và Diễn Viên có thể khiến 3 phân cảnh này xảy ra thì cả phe thắng (phân cảnh được ghi lại từ lúc bắt đầu nhưng Đạo Diễn chết mới khởi động, nghĩa là nếu phân cảnh diễn ra lúc Đạo Diễn chưa chết vẫn tính): \n + Cảnh 1: Người chết do Diễn Viên giết \n + Cảnh 2: Người chết do bị phản đòn giết Đạo Diễn \n + Cảnh 3: Một người từng diễn vai Kẻ Chết Thay chết vào ban ngày (tính cả bị vote)"
   },
   {
     "id": 11,
@@ -196,8 +196,8 @@
     "name": "Fan Cuồng",
     "team": "phe3",
     "teamName": "Không rõ",
-    "aura": "Không xác định (Thần tượng không đổi)",
-    "desc": "Mục tiêu: Chọn một \"Thần tượng\" vào đêm đầu tiên. Thần tượng phải là người cuối cùng còn sống (cùng với Fan Cuồng). Chức năng: Mỗi đêm, Fan Cuồng có thể chọn bảo vệ Thần tượng hoặc giết người đang đe dọa Thần tượng (mặc định mỗi đêm có khiên hoặc súng, chọn một trong hai, mục tiêu bảo vệ Thần tượng, khiên không có tác dụng vào ban ngày, nếu chọn khiên chỉ vệ Thần tượng không được vệ bản thân).\n Ghi chú: Nếu Thần tượng chết, Fan Cuồng sẽ trở thành Chán Đời - thắng khi bị treo cổ. \n Khi chọn được Thần tượng, cả hai sẽ cùng vào chung một group để hợp tác, Thần tượng được giữ toàn bộ chức năng cũ. Khi một trong hai chết không kéo chung người còn lại. \n Phe Fan cuồng thắng khi: \n - Thần tượng còn sống \n - Fan cuồng mất Thần tượng bị treo cổ \n - Cả hai đều còn sống."
+    "aura": "Không xác định",
+    "desc": "Mục tiêu: Chọn một \"Thần tượng\" vào đêm đầu tiên. Thần tượng phải là người cuối cùng còn sống (cùng với Fan Cuồng). \n\n Chức năng: Mỗi đêm, Fan Cuồng có thể chọn bảo vệ Thần tượng hoặc giết người đang đe dọa Thần tượng (mặc định mỗi đêm có khiên hoặc súng, chọn một trong hai, mục tiêu bảo vệ Thần tượng, khiên không có tác dụng vào ban ngày, nếu chọn khiên chỉ vệ Thần tượng không được vệ bản thân).\n\n Ghi chú: Nếu Thần tượng chết, Fan Cuồng sẽ trở thành Chán Đời - thắng khi bị treo cổ. \n Khi chọn được Thần tượng, cả hai sẽ cùng vào chung một group để hợp tác, Thần tượng được giữ toàn bộ chức năng cũ. Khi một trong hai chết không kéo chung người còn lại. Hào quang của Thần Tượng được giữ nguyên.\n Phe Fan cuồng thắng khi xảy ra một trong các trường hợp sau: \n - Thần tượng còn sống \n - Fan cuồng mất Thần tượng bị treo cổ \n - Cả hai đều còn sống."
   },
   {
     "id": 26,
@@ -1142,5 +1142,78 @@
     "teamName": "Phe Dân Làng",
     "aura": "Thiện",
     "desc": "Mỗi đêm, Thợ Săn có quyền ghim một người. Nếu Thợ Săn bị giết hay bị treo cổ, người này chết theo."
+  },
+    {
+    "id": 135,
+    "name": "Người Khai Mệnh",
+    "team": "dan",
+    "teamName": "Phe Dân Làng",
+    "aura": "Thiện",
+    "desc": "Bạn có hai thẻ bài mà có thể đưa cho người chơi khác vào ban đêm. Họ có thể sử dụng thẻ bài của họ để tiết lộ vai trò của mình. Những người chơi không thuộc phe dân làng có thể lựa chọn tiết lộ vai trò của mình thành một vai trò khác. Khi bạn bị giết, những người chơi với những thẻ bài chưa được sử dụng sẽ bị tiết lộ vai trò thật sự của họ."
+  },
+  {
+    "id": 136,
+    "name": "Giáo Chủ",
+    "team": "phe3",
+    "teamName": "Phe Ba",
+    "aura": "Không xác định",
+    "desc": "Mỗi đêm, bạn có thể chọn một người chơi để họ gia nhập giáo phái của bạn. Họ vẫn giữ nguyên vai trò ban đầu của mình. Ngoài ra, bạn có thể hiến tế một thành viên trong giáo phái để giết một người chơi khác. Bạn chỉ có thể có tối đa 5 thành viên giáo phái còn sống cùng lúc, và bạn không thể biến đổi ma sói hoặc những kẻ giết người. Vào ban ngày, bạn có thể gửi tin nhắn riêng cho các thành viên trong giáo phái của mình. Nếu Giáo chủ chết, tất cả thành viên giáo phái sẽ chết theo."
+  },
+
+  {
+    "id": 137,
+    "name": "Huyết Chủ",
+    "team": "phe3",
+    "teamName": "Phe Ba",
+    "aura": "Không xác định",
+    "desc": "Đi chung với Huyết Bộc \n\n Kỹ năng Huyết Ấn: Mỗi đêm, Huyết Chủ thức dậy và chỉ định một người chơi để khắc lên \"Huyết Ấn\". Người bị dính Huyết Ấn hoàn toàn không biết mình bị đánh dấu và vẫn chơi bình thường. Tuy nhiên, vào ban ngày, phiếu vote của họ sẽ bí mật bị buộc phải theo phiếu vote của Huyết Chủ. Quản sẽ bí mật cộng phiếu không công khai\n\n Nếu Huyết Bộc chết trước, mỗi đêm Huyết Chủ có thể kích hoạt Huyết Ấn trên tất cả những người từng dính và biến họ làm nô lệ. Huyết Chủ có quyền chọn 3 người trước khi quản add họ vào group chung để giữ lại chức năng (nếu họ đã dùng hết chức năng hoặc còn bao nhiêu sẽ tính bấy nhiêu). Những người còn lại sẽ mất hết chức năng và gia nhập phe huyết tộc, hào quang của họ được giữ nguyên. \n\n Phe huyết tộc thắng nếu tất cả người chơi đều trở thành nô lệ hoặc bị giết."
+  },
+    {
+    "id": 138,
+    "name": "Huyết Bộc",
+    "team": "phe3",
+    "teamName": "Phe Ba",
+    "aura": "Không xác định",
+    "desc": "Đi chung với Huyết Chủ \n\n Mỗi đêm, Huyết Bộc chọn một trong hai kĩ năng \n - Kỹ năng Huyết Thuẫn: 3 lần trong trò chơi, Huyết Chủ sẽ được bảo vệ hoàn toàn khỏi mọi sát thương trong đêm đó. \n - Kỹ năng Đồng hóa: nếu Huyết Bộc chọn người đã dính Huyết Ấn, người đó sẽ bị đồng hóa, quản trò sẽ bí mật tiết lộ vai trò thật của người đó cho Huyết Bộc biết. Đồng thời, trong đêm đó người bị đồng hóa sẽ mất khả năng tự vệ hoặc được vệ và có xác suất 25% chết trong đêm đó (quản random 3 sống 1 chết, nếu quay vào sống nhưng đêm đó bị giết dù có người vệ vẫn vô dụng, chỉ có Phù cứu được) \n\n Nếu Huyết Chủ chết: \n - Tất cả những người chơi đang mang \"Huyết Ấn\" trên người sẽ lập tức chết vào ngay đêm đó. \n - Kể từ đêm tiếp theo, Huyết Bộc biến thành Kẻ Đồ Sát, mỗi đêm được quyền chọn giết 1 người và phải tiêu diệt sạch những người còn lại để giành chiến thắng đơn độc."
+  },
+  {
+    "id": 139,
+    "name": "Sói Ảo Thuật Gia",
+    "team": "soi",
+    "teamName": "Phe Sói",
+    "aura": "Ác",
+    "desc": "Vào ban đêm, Sói Ảo Thuật Gia có thể chọn một thành viên cùng phe và trao cho họ khả năng biến đổi thành một vai trò sói khác không có sẵn trong ván game này. Con sói được chọn sẽ quyết định khi nào thì bắt đầu sự biến đổi, và sự biến đổi sẽ xảy ra vào giai đoạn thảo luận tiếp theo. Khả năng biến đổi vẫn được giữ kể cả nếu Sói Ảo Thuật Gia chết. Bạn có thể biến đổi một người chơi mỗi game."
+  },
+  {
+    "id": 140,
+    "name": "Sói Lưu Đày",
+    "team": "phe3",
+    "teamName": "Phe Ba",
+    "aura": "Không xác định",
+    "desc": "Đi chung với Kẻ Giải Nguyền\n\n Sói Lưu Đày không thức dậy cùng bầy sói. \nMỗi đêm, Sói Lưu Đày chọn một người, người này sẽ mất toàn bộ chức năng trong đêm đó và hoàn toàn bị cấm chat, cấm bỏ phiếu vào ban ngày. \n\n Nếu Kẻ Giải Nguyền chết, phong ấn vỡ, Sói Lưu Đày hóa điên, gia nhập bầy sói cũ và bầy sói được cắn 2 người mỗi đêm."
+  },
+    {
+    "id": 141,
+    "name": "Kẻ Giải Nguyền",
+    "team": "phe3",
+    "teamName": "Phe Ba",
+    "aura": "Không xác định",
+    "desc": "Đi chung với Sói Lưu Đày\n\n Kỹ năng Hình Nhân Thế Mạng: Mỗi đêm, bạn chọn một người chơi bất kỳ để làm \"Hình Nhân\". Nếu trong đêm đó Sói Lưu Đày bị giết, toàn bộ sát thương sẽ bí mật chuyển hướng sang Hình Nhân.\n\n Kỹ năng Che Giấu Khí Tức: Khi Kẻ Giải Nguyền còn sống, nếu Tiên Tri soi trúng Sói Lưu Đày, kết quả luôn bị bóp méo và trả về là \"Thiện\"."
+  },
+  {
+    "id": 142,
+    "name": "Người Hái Thuốc",
+    "team": "dan",
+    "teamName": "Phe Dân Làng",
+    "aura": "Thiện",
+    "desc": "Đi chung với Kẻ Pha Chế nhưng không biết đối phương là ai\n\n Mỗi đêm thức dậy chọn 1 người. Nếu người đó thuộc phe Dân, thu được 1 'Thảo dược'. Nếu là Sói hoặc phe 3, thu được 1 'Nọc độc'. \n\n Nếu Kẻ Pha Chế chết, mỗi đêm Người Hái Thuốc chọn 1 người để 'Đắp thuốc'. Nếu người đó bị tấn công trong đêm, họ sẽ không chết ngay mà thoi thóp sống thêm được 1 ban ngày (vẫn được phát biểu và bỏ phiếu), sau đó sẽ đột tử chết ngay khi cuộc bỏ phiếu ban ngày kết thúc."
+  },
+  {
+    "id": 143,
+    "name": "Kẻ Pha Chế",
+    "team": "dan",
+    "teamName": "Phe Dân Làng",
+    "aura": "Thiện",
+    "desc": "Đi chung với Người Hái Thuốc nhưng không biết đối phương là ai\n\n Quản trò cho biết số nguyên liệu hiện có. Kẻ Pha Chế có quyền quyết định dùng 2 'Thảo dược' để chế thành Bình Giải (cứu 1 người chết đêm đó), hoặc 2 'Nọc độc' để chế thành Bình Độc (giết 1 người trong đêm đó). Mỗi loại bình chỉ được chế 2 lần. \n\n Nếu Người Hái Thuốc chết, Kẻ Pha Chế sẽ vét sạch đồ nghề dự phòng để tạo ra 1 'Bình Khói' duy nhất. Kẻ Pha Chế có quyền ném Bình Khói này vào 1 người bất kỳ để bảo vệ mục tiêu đó khỏi mọi sát thương trong 1 đêm duy nhất."
   }
 ]
