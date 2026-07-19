@@ -534,6 +534,7 @@
         }
 
         // 4. Hàm đối chiếu ID và Tên với JSON
+// 4. Hàm đối chiếu ID và Tên với JSON
         async function checkUserPermission(id, name) {
             try {
                 const res = await fetch('account.json?v=' + new Date().getTime());
@@ -552,6 +553,12 @@
                     
                     document.getElementById('auth-overlay').style.display = 'none';
                     loadCharactersData();
+                    
+                    window.location.href = "index.html"; 
+                    
+                    // CÁCH 2: Tải lại (refresh) trang hiện tại để áp dụng trạng thái đăng nhập
+                    // window.location.reload();
+
                 } else {
                     localStorage.removeItem('werewolf_fb_id');
                     localStorage.removeItem('werewolf_fb_name');
@@ -561,8 +568,7 @@
                 console.error("Lỗi khi đọc file account.json:", error);
                 showAuthError(id, name);
             }
-        }
-        
+        }        
         // 5. Hiển thị thông báo kèm ID và Name để tiện copy gửi quản trị viên
         function showAuthError(id, name) {
             document.getElementById('auth-overlay').style.display = 'flex';
