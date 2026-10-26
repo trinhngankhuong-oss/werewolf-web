@@ -1215,5 +1215,13 @@
     "teamName": "Phe Dân Làng",
     "aura": "Thiện",
     "desc": "Đi chung với Người Hái Thuốc nhưng không biết đối phương là ai\n\n Quản trò cho biết số nguyên liệu hiện có. Kẻ Pha Chế có quyền quyết định dùng 2 'Thảo dược' để chế thành Bình Giải (cứu 1 người chết đêm đó), hoặc 2 'Nọc độc' để chế thành Bình Độc (giết 1 người trong đêm đó). Mỗi loại bình chỉ được chế 2 lần. \n\n Nếu Người Hái Thuốc chết, Kẻ Pha Chế sẽ vét sạch đồ nghề dự phòng để tạo ra 1 'Bình Khói' duy nhất. Kẻ Pha Chế có quyền ném Bình Khói này vào 1 người bất kỳ để bảo vệ mục tiêu đó khỏi mọi sát thương trong 1 đêm duy nhất."
-  }
+  },
+    {
+    "id": 144,
+    "name": "Thần Thảo Hồi Sinh",
+    "team": "dan",
+    "teamName": "Phe Dân Làng",
+    "aura": "Thiện",
+    "desc": "Hai lần trong trò chơi, Thần Thảo có thể trồng mỗi lần 1 hạt giống lên người còn sống nhưng không thể trồng lên chính mình, người này sẽ không biết mình được trồng hạt giống\n\n Khi người được trồng chết, quản sẽ thông báo người này chết như bình thường nhưng thực tế người này chỉ rơi vào trạng thái ngủ đông và sẽ hồi sinh lại vào sáng hôm sau."
+    }
 ]
