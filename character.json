@@ -141,7 +141,7 @@
     "team": "soi",
     "teamName": "Phe Sói",
     "aura": "Ác",
-    "desc": "Chức năng: Mỗi đêm, chọn một người chơi để \"Đặt bẫy\". Cơ chế: Nếu có bất kỳ chức năng nào (Tiên tri, Bảo vệ, Phù thủy...) tác động lên người bị đặt bẫy, chức năng đó sẽ bị lỗi và phản tác dụng lên chính người sử dụng (ví dụ: Tiên tri soi trúng bẫy sẽ nhận kết quả ngược, Bảo vệ bảo vệ trúng bẫy sẽ làm mục tiêu chết, Phù thủy ném độc không chết người dính bẫy nhưng cứu lại khiến người đó chết luôn,... (tóm gọn là char đó chức năng như nào tác động lên người dính bẫy cho kết quả trái ngược))."
+    "desc": "Chức năng: Ba lần trong trò chơi, sói có quyền chọn một người chơi để \"Đặt bẫy\". Lưu ý chỉ được bẫy mỗi người một lần trong cả ván. \n\n Cơ chế: Nếu sói đặt bẫy lên char nào, char đó sẽ bị lỗi và phản tác dụng lên chính người sử dụng\n\n Vd: Sói bẫy Tiên tri nhận kết quả ngược, nhưng bẫy người bị Tri soi không ảnh hưởng kết quả soi nhưng sẽ ảnh hưởng chức năng của chính người đó\n Sói bẫy Vệ nếu vệ ai sẽ làm mục tiêu chết\n Phù thủy dính bẫy ném độc không chết nhưng cứu lại khiến người đó chết"
   },
   {
     "id": 19,
